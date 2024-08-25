@@ -1,0 +1,27 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="titulos">Inicio de Sesión</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+<!-- Ingresar el Nombre-->
+    <ion-item>
+    <ion-input type="text" label="Nombre" [(ngModel)]="nombre" name="nombre" placeholder="Ingresa el nombre"></ion-input>
+    </ion-item>
+<!-- Ingresar el Usuario-->
+    <ion-item>
+      <ion-input type="text" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+    </ion-item>
+<!-- Ingresar La Password-->
+    <ion-item>
+      <ion-input type="password" label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+    </ion-item>
+<!-- Botón de Ingresar-->
+    <ion-button (click)="ingresar()" expand="block" shape="round">
+      Ingresar
+    </ion-button>
+
+  </ion-content>
+</ion-app>

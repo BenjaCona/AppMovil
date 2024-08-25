@@ -1,0 +1,22 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="titulos">Titulo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+  <h1 class="titulos"> Registro de usuario  </h1>
+  <ion-item>
+    <ion-input type="text" label="Nombre" [(ngModel)]="nombre" name="nombre" placeholder="Ingresa tu nombre "></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="mostrarAlerta()" > Enviar</ion-button>
+  <ion-button routerLink="/pagina1">
+    pagina2
+  </ion-button>
+
+
+</ion-content>
+
+</ion-app>
