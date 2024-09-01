@@ -4,29 +4,29 @@
       <ion-title class="header">
         <div class="hcs">
             <img id="logo" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-            <span>Iniciar Sesion               </span>
+            <span>Iniciar Sesion</span>
         </div>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="inicio-sesion">
-<!-- Ingresar el Nombre-->
-    <ion-item>
-    <ion-input type="text" label="Nombre" [(ngModel)]="nombre" name="nombre" placeholder="Ingresa el nombre"></ion-input>
-    </ion-item>
+
 <!-- Ingresar el Usuario-->
-    <ion-item>
-      <ion-input type="text" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+    <ion-item >
+      <ion-input class="labels" type="text"  label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
     </ion-item>
 <!-- Ingresar La Password-->
     <ion-item>
-      <ion-input type="password" label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+      <ion-input  class="labels" type="password" label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
     </ion-item>
 <!-- Botón de Ingresar-->
     <ion-button (click)="ingresar()" expand="block" shape="round">
       Ingresar
     </ion-button>
+
+<!-- Botón de Registro-->    
+    <button class="btn" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</button>
 
   </ion-content>
 </ion-app>

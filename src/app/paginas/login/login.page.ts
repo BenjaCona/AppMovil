@@ -8,7 +8,7 @@ import { AlertController, ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  nombre : string=""
+  
   usuario : string=""
   password : string=""
 
@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   async MensajeError() {
     const alert = await this.alerta.create({
       header: 'Error',
-      message: 'No se ha podido iniciar sesión. Compruebe Nombre, Usuario y Contraseña',
+      message: 'No se ha podido iniciar sesión. Compruebe Usuario y Contraseña',
       buttons: ['Aceptar']
     });
   
