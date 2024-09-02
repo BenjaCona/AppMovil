@@ -1,32 +1,32 @@
 <ion-app>
-  <ion-header >
-    <ion-toolbar>
-      <ion-title class="header">
-        <div class="hcs">
-            <img id="logo" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-            <span>Iniciar Sesion</span>
-        </div>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content class="inicio-sesion">
-
-<!-- Ingresar el Usuario-->
+  <ion-content class="inicio-sesion" >
+    <div class="hcs">
+      <img id="logo" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+    </div>
+    <ion-card class="card ion-no-padding">
+      <ion-card-header>
+        <ion-card-title>Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+    
+    <ion-card-content class="card">
+        <!-- Ingresar el Usuario-->
     <ion-item >
-      <ion-input class="labels" type="text"  label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+      <ion-input class="labels" type="text" shape="round" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+      
     </ion-item>
+    <br>
 <!-- Ingresar La Password-->
-    <ion-item>
-      <ion-input  class="labels" type="password" label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+    <ion-item shape="round">
+      <ion-input   type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
     </ion-item>
 <!-- Botón de Ingresar-->
-    <ion-button (click)="ingresar()" expand="block" shape="round">
+    <ion-button (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
       Ingresar
     </ion-button>
 
 <!-- Botón de Registro-->    
-    <button class="btn" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</button>
-
+    <ion-button class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
+    </ion-card-content>
+    </ion-card>
   </ion-content>
 </ion-app>

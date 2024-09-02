@@ -1,37 +1,41 @@
 #logo {
-    width: 120px;
+    
+    width: 500px;
+    max-width: 300px;
+    min-width: 300px;
+    margin-inline: 50px;
+
+}
+
+.header{
+    --ion-background-color: #EE8D4A
+
 }
 
 .hcs {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: 'Times New Roman', Times, serif;
-    text-decoration: underline;
-    text-decoration-color: black;
-    text-decoration-line:overline ;
-    
-    
-    
+    --ion-background-color: transparent;    
   }
 
-.header{
-   background-color: rgba(111, 32, 175, 0.479);
+
+
+
+
+.inicio-sesion{
+    background-size: auto;
+       
+    --background: url("../../../assets/icon/ensaladasdeveranofaciles.jpg");
 }
 
-.fondo{
-    background-color:  rgba(111, 32, 175, 0.479);}
-.inicio-sesion{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    width: 50%;
+
+
+.login{
     --ion-background-color:#EE8D4A
 }
 
-.btn{
-    background-color: black;
+.card{
+    background-color:#EE8D4A
     
 }
-

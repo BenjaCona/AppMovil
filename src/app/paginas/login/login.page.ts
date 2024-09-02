@@ -23,15 +23,25 @@ export class LoginPage implements OnInit {
   
     await alert.present();
   }
+  async MensajeCerrarSesion() {
+    const toast = await this.mensaje.create({
+      message: 'Cerrar Sesión Exitoso',
+      duration: 2000
+    });
   
+  } 
  async MensajeCorrecto() {
   const toast = await this.mensaje.create({
     message: 'Inicio de Sesión Exitoso',
     duration: 2000
+    
   });
   toast.present();
  } 
+ 
 
+
+  
   ingresar (){
     if(this.usuario ==="" || this.password ===""){
       console.log("No se puede dejar el usuario y contraseñas vacios")
