@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'preinicio',
     loadChildren: () => import('./paginas/preinicio/preinicio.module').then( m => m.PreinicioPageModule)
   },
+  {
+    path: 'animaciones',
+    loadChildren: () => import('./paginas/animaciones/animaciones.module').then( m => m.AnimacionesPageModule)
+  },
 
 
 

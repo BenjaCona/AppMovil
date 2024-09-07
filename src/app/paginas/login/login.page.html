@@ -10,15 +10,15 @@
     
     <ion-card-content class="card">
         <!-- Ingresar el Usuario-->
-    <ion-item >
+    
       <ion-input class="labels" type="text" shape="round" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
       
-    </ion-item>
+    
     <br>
 <!-- Ingresar La Password-->
-    <ion-item shape="round">
-      <ion-input   type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
-    </ion-item>
+   
+      <ion-input  class="labels" type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+    
 <!-- Botón de Ingresar-->
     <ion-button (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
       Ingresar
