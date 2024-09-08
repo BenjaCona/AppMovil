@@ -11,7 +11,7 @@
     <ion-content class=" listado-menu ion-no-padding ">
       <ion-list >
         <ion-item >
-          <ion-label routerLink="/pagina1" >Página 1</ion-label>
+          <ion-label routerLink="/pagina1" >Mi cuenta</ion-label>
         </ion-item>
         <ion-item>
           <ion-label routerLink="/animaciones">Animaciones</ion-label>
@@ -52,11 +52,24 @@
         <img src="../../assets/icon/Recetas.jpg" alt="" routerLink="/recetas">
       </ion-card>
 
-      <ion-col>
-        <ion-fab-button class="boton">
-          <img src="../../assets/icon/Locales.jpg" alt="">
-        </ion-fab-button>
-      </ion-col>  
+      <ion-card id="img">
+        <img src="../../assets/icon/Locales.jpg" alt="" routerLink="/locales">
+      </ion-card>
+
+      <ion-card id="img">
+        <img src="../../assets/icon/Crearreceta.jpg" alt="" routerLink="/locales" >
+      </ion-card>
+
+      <ion-grid>
+        <ion-row>
+            <ion-card id="img">
+              <img src="../../assets/icon/Crearreceta.jpg" alt="" routerLink="/locales" >
+            </ion-card>
+        </ion-row>
+      </ion-grid>
+
+
+        
 
       <ion-fab slot="fixed" vertical="bottom" >
         <ion-fab-button size="small">

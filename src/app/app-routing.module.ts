@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'recetas',
     loadChildren: () => import('./paginas/recetas/recetas.module').then( m => m.RecetasPageModule)
   },
+  {
+    path: 'locales',
+    loadChildren: () => import('./paginas/locales/locales.module').then( m => m.LocalesPageModule)
+  },
 
 
 

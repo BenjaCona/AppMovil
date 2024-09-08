@@ -14,15 +14,16 @@
       <ion-input class="labels" type="text" shape="round" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
       
     
-    <br>
+      <br>
 <!-- Ingresar La Password-->
+
    
       <ion-input  class="labels" type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
-    
+      <br>
 <!-- Botón de Ingresar-->
-    <ion-button color="dark" (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
+      <ion-button color="dark" (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
       Ingresar
-    </ion-button>
+      </ion-button>
 
 <!-- Botón de Registro-->    
     <ion-button color="dark" class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
