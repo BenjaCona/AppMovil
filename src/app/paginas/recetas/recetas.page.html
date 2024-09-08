@@ -1,0 +1,106 @@
+<ion-app>
+
+  <ion-menu contentId="main-content">
+    
+    <ion-header>
+      <ion-toolbar color="transparent">
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class=" listado-menu ion-no-padding ">
+      <ion-list>
+        <ion-item >
+          <ion-label routerLink="/pagina1" >Página 1</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label routerLink="/animaciones">Animaciones</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>¿?</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Configuración</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label routerLink="/login">Cerrar Sesión</ion-label>
+        </ion-item>
+      </ion-list>
+    
+    </ion-content>
+
+  </ion-menu>
+
+
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        
+        <div class="hcs">
+          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+          <ion-title></ion-title>   
+        </div>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-no-padding">
+      <ion-toolbar>
+        <ion-segment value="todo">
+          <ion-segment-button value="todo">
+            <ion-label >Todo</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="categorías">
+            <ion-label>Categorías</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+      <ion-searchbar show-clear-button="focus" value="Buscar"></ion-searchbar>
+
+    <!-- Cartas de Recetas -->
+      <ion-card id="cartas">
+        <img src="../../../assets/icon/Pasteldechoclo.png" alt="Pastel de choclo"/>
+        <ion-card-header>
+          <ion-card-title>Pastel de Choclo</ion-card-title>
+          <ion-card-subtitle>Almuerzo</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Pastel de choclo hecho al horno con pino, aceituna, choclo y pollo. 
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card id="cartas">
+        <img src="../../../assets/icon/Sandwich.jpg" alt="sándwiches de queso"/>
+        <ion-card-header>
+          <ion-card-title>Sándwiches de Queso</ion-card-title>
+          <ion-card-subtitle>Cena</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Sándwiches rellenos con queso al gusto, acompañado con pan tostado. 
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card id="cartas">
+        <img src="../../../assets/icon/Hummus.png" alt="Hummus de Garbanzos"/>
+        <ion-card-header>
+          <ion-card-title>Hummus de Garbanzos</ion-card-title>
+          <ion-card-subtitle>Almuerzo</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Hummus condimentado de garbanzos caseros al gusto. 
+        </ion-card-content>
+      </ion-card>
+      
+    </ion-content>
+    <ion-buttons slot="start">
+      <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </div>
+
+
+
+
+
+</ion-app>

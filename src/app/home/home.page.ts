@@ -32,4 +32,5 @@ export class HomePage {
     console.log(this.nombre)
   }
 
+
 }

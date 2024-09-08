@@ -20,12 +20,12 @@
       <ion-input  class="labels" type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
     
 <!-- Botón de Ingresar-->
-    <ion-button (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
+    <ion-button color="dark" (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
       Ingresar
     </ion-button>
 
 <!-- Botón de Registro-->    
-    <ion-button class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
+    <ion-button color="dark" class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
     </ion-card-content>
     </ion-card>
   </ion-content>

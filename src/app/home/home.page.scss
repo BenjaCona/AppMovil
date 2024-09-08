@@ -51,3 +51,19 @@ div.item-native::after{
   --ion-background: transparent;
   background-color: transparent;
 }
+
+#img{
+
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+}
+
+.boton{
+  
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+}

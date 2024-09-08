@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'animaciones',
     loadChildren: () => import('./paginas/animaciones/animaciones.module').then( m => m.AnimacionesPageModule)
+  },  {
+    path: 'recetas',
+    loadChildren: () => import('./paginas/recetas/recetas.module').then( m => m.RecetasPageModule)
   },
+
 
 
 
