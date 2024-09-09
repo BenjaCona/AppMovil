@@ -1,9 +1,9 @@
 <ion-app>
   <ion-content class="inicio-sesion" >
-    <div class="hcs">
-      <img id="logo" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+    <div class="hcs ">
+      <img id="logo ion-no-padding" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
     </div>
-    <ion-card class="card ion-no-padding">
+    <ion-card class="card ion-no-padding" position="absolute">
       <ion-card-header>
         <ion-card-title>Iniciar Sesión</ion-card-title>
       </ion-card-header>
@@ -11,22 +11,22 @@
     <ion-card-content class="card">
         <!-- Ingresar el Usuario-->
     
-      <ion-input class="labels" type="text" shape="round" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+        <ion-input  type="text"  fill="solid"  label="Usuario"  labelPlacement="floating"   errorText="Nombre Invalido" [(ngModel)]="usuario"> </ion-input> 
       
     
       <br>
 <!-- Ingresar La Password-->
 
    
-      <ion-input  class="labels" type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+      <ion-input  type="password"  fill="solid"  label="Contraseña"  labelPlacement="floating"   errorText="Contraseña no segura" [(ngModel)]="password"> </ion-input> 
       <br>
 <!-- Botón de Ingresar-->
-      <ion-button color="dark" (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
+      <ion-button color="warning" (click)="ingresar()" expand="block" shape="round" class="ion-no-padding">
       Ingresar
       </ion-button>
 
 <!-- Botón de Registro-->    
-    <ion-button color="dark" class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
+    <ion-button color="warning" class="btn ion-no-padding" [routerLink]="['/registro']" expand="block" shape="round">¿No tienes cuenta?</ion-button>
     </ion-card-content>
     </ion-card>
   </ion-content>

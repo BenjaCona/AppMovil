@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams } from '@ionic/angular';
+import { HomePage } from 'src/app/home/home.page';
+
 
 @Component({
   selector: 'app-registro',
@@ -7,14 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroPage implements OnInit {
 
-  nombre : string=""
-  correo : string=""
-  usuario : string=""
-  password : string=""
+  nombre : string="";
+  
+  usuario ={
+    correo: '',
+    password : ''
 
-  constructor() { }
+  };
+  
+
+  constructor(public navCtrl: NavController) { }
+
+  datos(){
+    this.navCtrl.navigateForward('/home', {
+      state: {
+        nombre: this.nombre // Pasamos el valor de 'nombre'
+      }
+    })}
 
   ngOnInit() {
   }
 
+  onSubmitTemplate() {
+    console.log("correo god");
+    this.datos();
+  }
 }
+

@@ -38,31 +38,32 @@
     
       
       
-      <ion-input class="labels" type="text" shape="round" label="Usuario" [(ngModel)]="usuario"name="usuario" placeholder="Ingresa el usuario"></ion-input> 
+      <ion-input  type="nombre"  fill="solid"  label="Usuario"  labelPlacement="floating"   errorText="Nombre de Usuario no disponible" ngModel username> </ion-input> 
       
       
       <br>
  
       
-      <ion-input   class="labels" type="password"  label="Contraseña" [(ngModel)]="password" name="password" placeholder="Ingresa la contraseña"></ion-input> 
+      <ion-input  type="password"  fill="solid"  label="Contraseña"  labelPlacement="floating"   errorText="Contraseña no segura" ngModel password> </ion-input> 
       <br>
 
 
-      <ion-input class="labels" type="text" shape="round" label="Nombre" [(ngModel)]="nombre"name="nombre" placeholder="Ingresa el nombre"></ion-input> 
+      <ion-input  type="text"  fill="solid"  label="Nombre"  labelPlacement="floating"   errorText="Nombre Invalido" [(ngModel)]="nombre" > </ion-input>
         
       
       <br>
-      <ion-input class="labels" type="text" shape="round" label="Correo" [(ngModel)]="correo"name="correo" placeholder="Ingresa el correo"></ion-input>
-
+      <form #correo="ngForm" (ngSubmit)="onSubmitTemplate()">
+      <ion-input name="correo"  [(ngModel)]="usuario.correo" type="email"  fill="solid"  label="Correo"  labelPlacement="floating"   errorText="Correo Invalido"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" required> </ion-input>
+      </form>
         
       
       <br>
-      <ion-button expand="block" color="dark">
+      <ion-button expand="block" color="warning" routerLink="/home">
         Registrarse
       </ion-button>
   
       
-      <ion-button expand="block" color="dark" routerLink="/login">
+      <ion-button expand="block" color="warning" routerLink="/login">
         Volver
       </ion-button>
 
