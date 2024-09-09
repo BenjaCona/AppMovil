@@ -1,0 +1,29 @@
+<ion-app>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar> 
+        <div class="hcs">
+          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+          <ion-title></ion-title>   
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-card class="camara">
+        <ion-button id="present-alert">Click Me</ion-button>
+      <ion-alert
+        trigger="present-alert"
+        header="A Short Title Is Best"
+        subHeader="A Sub Header Is Optional"
+        message="A message should be a short, complete sentence."
+        [buttons]="alertButtons"
+      ></ion-alert>
+      </ion-card>
+    </ion-content>
+    <ion-footer>
+      <ion-buttons slot="start">
+        <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+    </ion-footer> 
+  </div>  
+</ion-app>

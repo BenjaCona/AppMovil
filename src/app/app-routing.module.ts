@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'locales',
     loadChildren: () => import('./paginas/locales/locales.module').then( m => m.LocalesPageModule)
   },
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./paginas/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
+  {
+    path: 'camara-ingrediente',
+    loadChildren: () => import('./paginas/camara-ingrediente/camara-ingrediente.module').then( m => m.CamaraIngredientePageModule)
+  },
 
 
 
