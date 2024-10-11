@@ -1,16 +1,24 @@
-.camara{
-    color: bisque;
-    background-color:black;
-}
-
-ion-card{
-justify-content: center;
-align-items: center;
-
-}
-
-ion-button{
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-}
+.custom-button {
+    --background: #3880ff; 
+    --color: white; 
+    --border-radius: 20px; 
+    --padding-start: 20px; 
+    --padding-end: 20px; 
+    --padding-top: 12px; 
+    --padding-bottom: 12px; 
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+  }
+  
+  .custom-button:hover {
+    --background: #3171e0; 
+    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+  }
+  
+  .custom-button:active {
+    --background: #2856b4; 
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  }
+  

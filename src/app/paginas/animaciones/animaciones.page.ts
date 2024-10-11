@@ -1,40 +1,65 @@
-import { Component, OnInit, ElementRef, ViewChildren  } from '@angular/core';
-import type { QueryList } from '@angular/core';
-import type { Animation } from '@ionic/angular';
-import { AnimationController, IonCard } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal, NavController } from '@ionic/angular';
+import { AnimationController, Animation } from '@ionic/angular';
 
 @Component({
   selector: 'app-animaciones',
-  templateUrl: './animaciones.page.html',
-  styleUrls: ['./animaciones.page.scss'],
+  templateUrl: 'animaciones.page.html',
 })
-export class AnimacionesPage implements OnInit {
-  @ViewChildren(IonCard, { read: ElementRef }) cardElements!: QueryList<ElementRef<HTMLIonCardElement>>;
-  private animation! : Animation;
+export class AnimacionesPage {
+  @ViewChild('modal1', { static: true }) modal1!: IonModal;
+  @ViewChild('modal2', { static: true }) modal2!: IonModal;
+  @ViewChild('modal3', { static: true }) modal3!: IonModal;
 
-  constructor( private animacionCtrl : AnimationController) { }
-  ngAfterViewInit(){
-    const cardA = this.animacionCtrl
-    .create()
-    .addElement(this.cardElements.get(0)!.nativeElement)
-    .keyframes([
-      { offset: 0, transform: 'scale(1) rotate(0)' },
-      { offset: 0.5, transform: 'scale(1.5) rotate(45deg)' },
-      { offset: 1, transform: 'scale(1) rotate(0) ' },
-    ]);
-
-    this.animation = this.animacionCtrl
-    .create()
-    .duration(1000)
-    .iterations(Infinity)
-    .addAnimation([cardA])
-
-    this.animation.play()
-
-
-  }
+  constructor(
+    private animationCtrl: AnimationController,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
+    const createAnimation = (baseEl: HTMLElement): Animation => {
+      const root = baseEl.shadowRoot;
+      if (!root) return this.animationCtrl.create(); 
+
+      const backdrop = root.querySelector('ion-backdrop');
+      const wrapper = root.querySelector('.modal-wrapper');
+      const backdropAnimation = this.animationCtrl
+        .create()
+        .addElement(backdrop || baseEl)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl
+        .create()
+        .addElement(wrapper || baseEl)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' },
+        ]);
+
+      return this.animationCtrl
+        .create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    };
+
+    const enterAnimation = (baseEl: HTMLElement): Animation => createAnimation(baseEl);
+    const leaveAnimation = (baseEl: HTMLElement): Animation => createAnimation(baseEl).direction('reverse');
+
+    this.modal1.enterAnimation = enterAnimation;
+    this.modal1.leaveAnimation = leaveAnimation;
+    this.modal2.enterAnimation = enterAnimation;
+    this.modal2.leaveAnimation = leaveAnimation;
+    this.modal3.enterAnimation = enterAnimation;
+    this.modal3.leaveAnimation = leaveAnimation;
   }
 
+  closeModal(modal: IonModal) {
+    modal.dismiss();
+  }
+
+  goHome() {
+    this.navCtrl.navigateRoot('/home');
+  }
 }

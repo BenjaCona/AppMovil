@@ -1,18 +1,77 @@
-<ion-app>
-  <ion-header>
-    <ion-toolbar color="primary">
-       <ion-buttons slot="start">
-        <ion-back-button defaultHref="home"></ion-back-button>
-       </ion-buttons>
-      <ion-title class="titulos">Animaciones</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mis Recetas</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-content>
-    <h1 class="titulos">Bienvenidos</h1>
-    <ion-card>
-      <ion-card-content>Card 1</ion-card-content>
-    </ion-card>
-  </ion-content>
+<ion-content class="ion-padding">
+  <!-- Botones para presentar los modales -->
+  <ion-button id="modal1-trigger" class="modal-button">
+    <img src="https://morenoesweno.cl/wp-content/uploads/2021/01/3600C317-369C-4973-BE66-FDB68DA6D6BD.jpg" alt="Open Modal 1" />
+  </ion-button>
+  <ion-button id="modal2-trigger" class="modal-button">
+    <img src="https://cdn7.kiwilimon.com/recetaimagen/39201/50738.jpg" alt="Open Modal 2" />
+  </ion-button>
+  <ion-button id="modal3-trigger" class="modal-button">
+    <img src="https://img.freepik.com/foto-gratis/ensalada-frutas-gourmet-saludable-bayas-organicas-generada-ia_188544-11769.jpg" alt="Open Modal 3" />
+  </ion-button>
 
-</ion-app>
+  <!-- Definición de los modales -->
+  <ion-modal trigger="modal1-trigger" #modal1>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Receta 1</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal(modal1)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h2>Pastel de Choclo</h2> 
+        <h3>Ingredientes</h3> <ul> <li>6 choclos chilenos</li> <li>4 presas de pollo</li> <li>150 gramos de posta de vacuno molida o picada</li> <li>30 gramos de azúcar granulada</li> <li>2 cebollas</li> <li>1 taza de leche</li> <li>2 dientes de ajo</li> <li>8 aceitunas negras</li> <li>3 huevos duros</li> <li>8 pasas rubias</li> <li>20 gramos de mantequilla</li> <li>Aceite de maravilla</li> <li>Comino</li> <li>Sal</li> <li>Pimienta negra molida</li> <li>1 manojo pequeño de albahaca</li> </ul> <h3>Instrucciones</h3> <ol> <li>En una sartén, caliente una lámina de aceite, agregue la cebolla y el ajo picado en cuadros pequeños (brunoise) y fríalos durante 3 minutos.</li> <li>Luego agregue la carne (molida o picada) y condimente con sal, pimienta y comino.</li> <li>Incorpore las pasas y siga friendo durante 7 minutos más.</li> <li>Ponga a cocer el pollo durante 30 minutos en agua hervida con sal y, si desea, verduras para darle mejor sabor.</li> <li>Pasado el tiempo retire el pollo y resérvelo.</li> <li>Pele y limpie los choclos, luego desgránelos y muélalos en la juguera junto con las hojas de albahaca o, si desea, rállelos con un rallador manual.</li> <li>Mezcle el puré de choclo obtenido con la leche, la sal y el azúcar.</li> <li>Luego ponga la mezcla del choclo en una olla y llévelo a cocer aproximadamente durante 35 minutos, revolviendo constantemente con una cuchara de madera, para que no se pegue la pastelera en el fondo de la olla.</li> <li>Pasado el tiempo, apague el fuego y resérvelo.</li> <li>En una budinera apta para el horno o en lebrillos de greda individuales previamente enmantequillados, distribuya el pino, las presas de pollo, las aceitunas y los huevos.</li> <li>Luego cubra todo con la pastelera de choclo y espolvoree encima azúcar granulada.</li> <li>Lleve el pastel al horno precalentado a 200°C. durante 12 minutos (gratinar).</li> <li>Cuando esté listo retírelo y sírvalo caliente decorado con hojas de albahaca.</li> </ol> 
+      
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal trigger="modal2-trigger" #modal2>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Espinacas a la Crema</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal(modal2)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <!-- Contenido del modal 2 -->
+        <h3>Ingredientes</h3> <ul> <li>1 Cucharada de Aceite de maíz</li> <li>1/2 Cebolla fileteada</li> <li>2 Manojos de Espinacas desinfectadas y fileteadas (200 g c/u)</li> <li>1 Lata de Media Crema NESTLÉ®️</li> <li>1 Cucharada de Consomé de pollo en polvo</li> <li>1/4 Cucharadita de Pimienta negra molida</li> </ul> <p>En una sartén grande con tapa, calentar el aceite a fuego medio, agregar la cebolla y dorar por 3 minutos. Si no usan cebolla pasar al siguiente paso. Leer nota.</p> <p>Agregar la harina y cocinar revolviendo por 2-3 minutos hasta que esté cocida y burbujeando.</p> <p>Sacar la sartén del fuego y agregar la leche lentamente y revolver con batidor para evitar grumos, una vez incorporada toda la leche devolver al fuego y dejar que vuelva a hervir revolviendo. Bajar el fuego al mínimo.</p> <p>Sazonar con nuez moscada, sal y pimienta a gusto. Agregar la espinaca y revolver, tapar dejar cocinar 2 minutos y revolver nuevamente, probar, ajustar la sazón.</p> <p>Servir caliente.</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal trigger="modal3-trigger" #modal3>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Receta 3</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal(modal3)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h3>Ingredientes</h3> <ul> <li>2 Unidades Naranja</li> <li>3 Unidades Kiwis</li> <li>9 Unidades Frutillas</li> <li>3 Unidades Durazno</li> <li>1/2 Paquete Leche Condensada (cualquiera)</li> <li>1/2 Taza Arándanos</li> <li>4 Cucharadas Yogurt Natural</li> </ul> <p>Colocar en un bol el contenido de ½ pack de Leche Condensada , añadir el yogurt natural y mezclar hasta integrar. Reservar en la heladera.</p> <p>Lavar las frutillas, retirarles el cabito, filetear.</p> <p>Pelar los kiwis, cortar en rodajas y las rodajas a la mitad.</p> <p>Pelar las naranjas y retirar los gajos a vivo.</p> <p>Pelar los duraznos y cortarlos en rodajitas.</p> <p>Colocar todas las frutas preparadas más los arándanos en un bol y mezclar.</p> <p>Distribuir en potes y reservar en la heladera cubiertos con film.</p> <p>En el momento de servir, salsear con la crema de Leche Condensada y yogurt.</p>
+        <!-- Contenido del modal 3 -->
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
