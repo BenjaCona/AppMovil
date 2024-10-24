@@ -3,12 +3,12 @@
   <ion-menu contentId="main-content">
     
     <ion-header>
-      <ion-toolbar color="transparent">
+      <ion-toolbar color="transparent" >
         <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class=" listado-menu ion-no-padding ">
+    <ion-content class=" listado-menu ion-no-padding " >
       <ion-list >
         <ion-item >
           <ion-label routerLink="/pagina1" >Mi cuenta</ion-label>
@@ -48,7 +48,7 @@
 
     <ion-content class="ion-no-padding">
 
-      <ion-label>Hola {{ nombreRecibido}} </ion-label>
+      
 
       <ion-card id="img">
         <img src="../../assets/icon/Recetas.jpg" alt="" routerLink="/recetas">
@@ -62,11 +62,15 @@
         <img src="../../assets/icon/Crearreceta.jpg" alt="" routerLink="/camara-ingrediente" >
       </ion-card>
 
+      <ion-card id="img">
+        <img src="../../assets/icon/EscribirReceta.jpg" alt="" routerLink="/escribir-receta">
+      </ion-card>
+
 
         
 
-      <ion-fab slot="fixed" vertical="bottom" >
-        <ion-fab-button size="small">
+      <ion-fab slot="fixed" vertical="bottom">
+        <ion-fab-button size="small" color="warning">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="end">

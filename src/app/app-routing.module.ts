@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'camara-ingrediente',
     loadChildren: () => import('./paginas/camara-ingrediente/camara-ingrediente.module').then( m => m.CamaraIngredientePageModule)
   },
+  {
+    path: 'escribir-receta',
+    loadChildren: () => import('./paginas/escribir-receta/escribir-receta.module').then( m => m.EscribirRecetaPageModule)
+  },
 
 
 
