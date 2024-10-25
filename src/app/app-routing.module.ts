@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'escribir-receta',
     loadChildren: () => import('./paginas/escribir-receta/escribir-receta.module').then( m => m.EscribirRecetaPageModule)
   },
+  {
+    path: 'ubicacion',
+    loadChildren: () => import('./paginas/ubicacion/ubicacion.module').then( m => m.UbicacionPageModule)
+  },
 
 
 
