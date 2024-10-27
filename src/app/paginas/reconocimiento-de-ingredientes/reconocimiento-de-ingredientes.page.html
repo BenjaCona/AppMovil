@@ -1,0 +1,10 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>reconocimiento-de-ingredientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="takePhoto()">Capturar Imagen</ion-button>
+  <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagen capturada" />
+</ion-content>
