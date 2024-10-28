@@ -1,10 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reconocimiento-de-ingredientes</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-button (click)="takePhoto()">Capturar Imagen</ion-button>
-  <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagen capturada" />
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Reconocimiento de Ingredientes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-button expand="full" (click)="takePhoto()">Tomar Foto</ion-button>
+  
+  <div *ngIf="imageUrl">
+    <img [src]="imageUrl" alt="Foto tomada" />
+  </div>
+  
+  <ion-list *ngIf="labels.length > 0">
+    <ion-list-header>
+      <ion-label>Ingredientes Identificados</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let label of labels">
+      <ion-label>{{ label }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
