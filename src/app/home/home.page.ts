@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomePage implements OnInit {
   nombre: string = "";
   nombreRecibido: string = "";
 
-  constructor(public alerta: AlertController, private router: Router) {}
+  constructor(public alerta: AlertController, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
@@ -23,6 +24,11 @@ export class HomePage implements OnInit {
       console.log('No se recibió ningún estado.');
     }
   }
+
+  
+
+  logout() {
+    this.authService.logout();}
   
   
 
@@ -46,4 +52,5 @@ export class HomePage implements OnInit {
   mostrar_nombre() {
     console.log(this.nombre);
   }
+  
 }

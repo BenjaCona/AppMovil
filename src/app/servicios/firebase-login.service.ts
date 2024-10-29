@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -7,14 +7,26 @@ import { Router } from '@angular/router';
 })
 export class FirebaseLoginService {
 
-  constructor(private afAtuh:AngularFireAuth, private router:Router) { }
+  constructor(private auth: Auth, private router: Router) {}
 
-  login(email:string,password:string){
-    return this.afAtuh.signInWithEmailAndPassword(email,password);
+  // Método para iniciar sesión
+  async login(email: string, password: string) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      return userCredential; // Retorna las credenciales del usuario
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+      throw error; // Lanza el error para que pueda ser manejado en el componente
+    }
   }
-  logout(){
-    return this.afAtuh.signOut().then(()=>{
-      this.router.navigate(['/login'])
-    })
+
+  // Método para cerrar sesión
+  async logout() {
+    try {
+      await signOut(this.auth);
+      this.router.navigate(['/login']); // Navega a la página de inicio de sesión
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   }
 }

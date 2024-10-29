@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
-import { HomePage } from 'src/app/home/home.page';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController, AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/auth.service'; // Ajusta la ruta según sea necesario
+import { FirebaseError } from 'firebase/app'; // Importa FirebaseError
 
 @Component({
   selector: 'app-registro',
@@ -9,31 +10,72 @@ import { HomePage } from 'src/app/home/home.page';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
+  registerForm: FormGroup;
 
-  nombre : string="";
-  
-  usuario ={
-    correo: '',
-    password : ''
+  constructor(
+    private formBuilder: FormBuilder,
+    public navCtrl: NavController,
+    private authService: AuthService, // Inyecta AuthService
+    private alertController: AlertController // Inyecta AlertController
+  ) {
+    // Inicializa el formulario
+    this.registerForm = this.formBuilder.group({
+      usuario: ['', Validators.required],
+      password: ['', Validators.required],
+      nombre: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]], // Validación de correo
+    });
+  }
 
-  };
-  
+  ngOnInit() {}
 
-  constructor(public navCtrl: NavController) { }
+  async onSubmitTemplate() {
+    if (this.registerForm.valid) {
+      const { usuario, password, nombre, correo } = this.registerForm.value;
 
-  datos(){
+      try {
+        // Registra al usuario usando AuthService
+        await this.authService.register(correo, password, usuario);
+        this.datos(); // Navegar a otra página si es necesario
+      } catch (error: unknown) {
+        console.error('Error al registrar:', error);
+        
+        // Manejar el error (mostrar un mensaje de alerta)
+        if (error instanceof FirebaseError && error.code === 'auth/email-already-in-use') {
+          this.showEmailInUseAlert();
+        } else {
+          // Manejo de otros errores si es necesario
+          this.showGenericErrorAlert();
+        }
+      }
+    }
+  }
+
+  datos() {
     this.navCtrl.navigateForward('/home', {
       state: {
-        nombre: this.nombre // Pasamos el valor de 'nombre'
-      }
-    })}
-
-  ngOnInit() {
+        nombre: this.registerForm.value.nombre, // Pasar el nombre
+      },
+    });
   }
 
-  onSubmitTemplate() {
-    console.log("correo god");
-    this.datos();
+  // Método para mostrar el alert si el correo ya está en uso
+  async showEmailInUseAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'El correo electrónico ya está en uso. Por favor, usa otro.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  // Método para mostrar un alert genérico para otros errores
+  async showGenericErrorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'El correo que estás intentando utilizar está en uso. Intente con uno nuevo',
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }
-

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Importar las funciones necesarias de Firebase
-import { environment } from '../environments/environment';
+import { firebaseConfig } from './firebase-config'; // Cambia a la ruta correcta de tu archivo
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MlkitService {
-  private apiKey: string = environment.firebaseConfig.apiKey;
+  private apiKey: string = firebaseConfig.apiKey; // Utiliza firebaseConfig directamente
 
   constructor(private http: HttpClient) {}
 
@@ -63,3 +63,4 @@ export interface VisionResponse {
     }>;
   }[];
 }
+

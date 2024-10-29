@@ -1,77 +1,81 @@
 <ion-app>
-
-<ion-header>
-  <ion-toolbar color="transparent">
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" >
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registro</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
-
-
-<div class="ion-page" id="main-content" >
-  <ion-header >
-    <ion-toolbar class="encabezado">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Registro</ion-title>
-      <div class="hcs">
-        <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-      </div>
+  <ion-header>
+    <ion-toolbar color="transparent">
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding" class="fondo">
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
     
+    </ion-header>
 
-    
-    <ion-card class="carta">
-      <ion-card-content>
-       
-      
-    
-      
-      
-      <ion-input  type="nombre"  fill="solid"  label="Usuario"  labelPlacement="floating"   errorText="Nombre de Usuario no disponible" ngModel username> </ion-input> 
-      
-      
-      <br>
- 
-      
-      <ion-input  type="password"  fill="solid"  label="Contraseña"  labelPlacement="floating"   errorText="Contraseña no segura" ngModel password> </ion-input> 
-      <br>
-
-
-      <ion-input  type="text"  fill="solid"  label="Nombre"  labelPlacement="floating"   errorText="Nombre Invalido" [(ngModel)]="nombre" > </ion-input>
+    <div class="ion-page" id="main-content">
+      <ion-toolbar class="encabezado">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
         
-      
-      <br>
-      <form #correo="ngForm" (ngSubmit)="onSubmitTemplate()">
-      <ion-input name="correo"  [(ngModel)]="usuario.correo" type="email"  fill="solid"  label="Correo"  labelPlacement="floating"   errorText="Correo Invalido"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" required> </ion-input>
-      </form>
-        
-      
-      <br>
-      <ion-button expand="block" color="warning" routerLink="/home">
-        Registrarse
-      </ion-button>
-  
-      
-      <ion-button expand="block" color="warning" routerLink="/login">
-        Volver
-      </ion-button>
+        <div class="hcs">
+          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+        </div>
+      </ion-toolbar>
 
-      
-    
-    </ion-card-content>
-  </ion-card>
+      <ion-content class="ion-padding fondo">
+        <ion-card class="carta">
+          <ion-card-content>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitTemplate()">
+              <ion-input
+                type="text"
+                fill="solid"
+                label="Nombre de Usuario"
+                labelPlacement="floating"
+                formControlName="usuario"
+                required
+              ></ion-input>
+              <br>
+
+              <ion-input
+                type="password"
+                fill="solid"
+                label="Contraseña"
+                labelPlacement="floating"
+                formControlName="password"
+                required
+              ></ion-input>
+              <br>
+
+              <ion-input
+                type="text"
+                fill="solid"
+                label="Nombre"
+                labelPlacement="floating"
+                formControlName="nombre"
+                required
+              ></ion-input>
+              <br>
+
+              <ion-input
+                name="correo"
+                type="email"
+                fill="solid"
+                label="Correo"
+                labelPlacement="floating"
+                formControlName="correo"
+                required
+              ></ion-input>
+              <br>
+
+              <ion-button expand="block" color="warning" type="submit" [disabled]="registerForm.invalid">
+                Registrarse
+              </ion-button>
+
+              <ion-button expand="block" color="warning" routerLink="/login">
+                Volver
+              </ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </div>
   </ion-content>
-</div>
-
 </ion-app>

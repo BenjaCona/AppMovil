@@ -1,20 +1,27 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Locales Cercanos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app class="gps">
+    <ion-header>
+      <ion-toolbar>       
+        <div class="hcs">
+          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
+          <ion-title></ion-title>   
+        </div>
+      </ion-toolbar>
+      <ion-searchbar show-clear-button="focus" color="dark" value="Locales cerca"></ion-searchbar>
+    </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="locales.length > 0">
-    <ion-item *ngFor="let local of locales">
-      <ion-label>
-        <h2>{{ local.name }}</h2>
-        <p>{{ local.vicinity }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-  
-  <ion-item *ngIf="locales.length === 0">
-    <ion-label>No se encontraron locales cercanos.</ion-label>
-  </ion-item>
-</ion-content>
+      <ion-row class="ion-align-items-end">
+        <ion-card class="carta-local">
+          <img alt="Silhouette of mountains" src="../../../assets/icon/Masama.jpg" />
+          <ion-card-header>
+            <ion-card-title>Masamá Restaurante</ion-card-title>
+            <ion-card-subtitle>Av. Libertad 1168</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-row>
+      <ion-footer>
+        <ion-buttons slot="start" color="warning">
+          <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+      </ion-footer>  
+
+</ion-app>
