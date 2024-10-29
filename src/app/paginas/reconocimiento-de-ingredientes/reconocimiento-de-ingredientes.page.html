@@ -5,8 +5,10 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-button expand="full" (click)="takePhoto()">Tomar Foto</ion-button>
-  
+  <ion-content>
+    <ion-button expand="full" (click)="takePhoto()" color="warning">Tomar Foto</ion-button>
+  </ion-content>
+
   <div *ngIf="imageUrl">
     <img [src]="imageUrl" alt="Foto tomada" />
   </div>
@@ -20,3 +22,8 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-buttons slot="start">
+    <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+  </ion-buttons>
+</ion-footer>
