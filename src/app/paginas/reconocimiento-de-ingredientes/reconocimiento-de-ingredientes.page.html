@@ -20,9 +20,19 @@
     </ion-item>
   </ion-list>
 
+  <ion-list *ngIf="recipes.length > 0">
+    <ion-list-header>
+      <ion-label>Recetas Sugeridas</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let recipe of recipes">
+      <ion-label>{{ recipe.title }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
   <ion-footer>
     <ion-buttons slot="start">
       <ion-back-button color="dark" defaultHref="/home"></ion-back-button>
     </ion-buttons>
   </ion-footer>
-</ion-content>
+
