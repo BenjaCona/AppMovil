@@ -6,7 +6,7 @@ import { environment } from '../environments/environment'; // Asegúrate de que 
   providedIn: 'root',
 })
 export class MlkitService {
-  private apiKey: string = environment.firebase.apiKey; // Coloca tu API Key aquí
+  private apiKey: string = environment.firebaseConfig.apiKey; // Coloca tu API Key aquí
 
   constructor(private http: HttpClient) {}
 

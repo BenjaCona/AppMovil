@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { FirebaseLoginService } from 'src/app/servicios/firebase-login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginPage implements OnInit {
   usuario : string=""
   password : string=""
 
-  constructor(public mensaje:ToastController, public alerta:AlertController, private router:Router) {  }
+  constructor(public mensaje:ToastController, public alerta:AlertController, private router:Router,private loginFirebase:FirebaseLoginService) {  }
 
   async MensajeError() {
     const alert = await this.alerta.create({
@@ -48,9 +49,14 @@ export class LoginPage implements OnInit {
       this.MensajeError()
     }
     else{
-      console.log("Inicio de Sesión Exitoso")
-      this.MensajeCorrecto()
-      this.router.navigate(["/home"])
+      this.loginFirebase.login(this.usuario,this.password).then(()=>{
+        console.log("Inicio de Sesión Exitoso")
+        this.MensajeCorrecto()
+        this.router.navigate(["/home"])
+      }).catch(()=>{
+        this.MensajeError();
+      })
+      
       
     }
   }

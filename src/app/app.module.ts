@@ -10,6 +10,10 @@ import { firebaseConfig } from './firebase-config';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
+import {AngularFireModule} from '@angular/fire/compat'
+import {AngularFireAuthModule} from '@angular/fire/compat/auth'
+import {environment} from 'src/environments/environment'
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule
     
   ],
   providers: [
