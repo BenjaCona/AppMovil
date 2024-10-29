@@ -9,7 +9,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { firebaseConfig } from './firebase-config';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
+    
     
   ],
   providers: [
@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     provideFirebaseApp(() => initializeApp(firebaseConfig)), 
     provideFirestore(() => getFirestore()), 
     provideStorage(() => getStorage()), 
+    provideHttpClient(withInterceptorsFromDi()),
   ],
   bootstrap: [AppComponent],
 })

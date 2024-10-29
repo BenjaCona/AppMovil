@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment'; // Asegúrate de que la ruta sea correcta
+import { environment } from '../environments/environment'; 
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MlkitService {
-  private apiKey: string = environment.firebase.apiKey; // Coloca tu API Key aquí
+  private apiKey: string = environment.firebase.apiKey;
 
   constructor(private http: HttpClient) {}
 
@@ -29,26 +30,26 @@ export class MlkitService {
         },
       ],
     };
-  
+
     try {
-      const response = await this.http.post<VisionResponse>(apiUrl, body).toPromise();
-      return response as VisionResponse; // Se asegura que el tipo de respuesta coincida con VisionResponse
+      const response = await lastValueFrom(this.http.post<VisionResponse>(apiUrl, body));
+      return response;
     } catch (error) {
       console.error('Error al etiquetar la imagen:', error);
-      throw error; // Propaga el error si es necesario
+      throw error;
     }
+  }
 }
 
-}
 export interface VisionResponse {
-    responses: {
-      labelAnnotations?: Array<{
-        mid: string;
-        description: string;
-        score: number;
-      }>;
-    }[];
-  }
-  
+  responses: {
+    labelAnnotations?: Array<{
+      mid: string;
+      description: string;
+      score: number;
+    }>;
+  }[];
+}
+
   
 
