@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class MlkitService {
-  private apiKey: string = environment.firebase.apiKey;
+  private apiKey: string = environment.firebaseConfig.apiKey; // Coloca tu API Key aquí
 
   constructor(private http: HttpClient) {}
 

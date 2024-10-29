@@ -11,6 +11,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
+import {AngularFireModule} from '@angular/fire/compat'
+import {AngularFireAuthModule} from '@angular/fire/compat/auth'
+import {environment} from 'src/environments/environment'
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +23,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     IonicModule.forRoot(),
     AppRoutingModule,
     
+    
+    AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule
     
   ],
   providers: [
