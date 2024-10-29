@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,21 @@ export class HomePage implements OnInit {
   constructor(public alerta: AlertController, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state) {
-      console.log('Estado recibido:', navigation.extras.state);
-      this.nombreRecibido = (navigation.extras.state as { nombre: string }).nombre;
-      console.log('Nombre recibido en Home:', this.nombreRecibido);
+    const auth = getAuth();
+    const user = auth.currentUser; // Obtén el usuario actual
+    if (user) {
+      this.authService.getUserData(user.uid).then(userData => {
+          if (userData) {
+              this.nombreRecibido = userData['username']; // Asigna el nombre del usuario
+              console.log('Nombre de usuario obtenido de Firestore:', this.nombreRecibido);
+            }
+        }).catch(error => {
+            console.error('Error al obtener el nombre del usuario:', error);
+        });
     } else {
-      console.log('No se recibió ningún estado.');
+        console.log('No hay usuario autenticado');
     }
-  }
+}
 
   
 
@@ -49,8 +56,17 @@ export class HomePage implements OnInit {
     }
   }
 
-  mostrar_nombre() {
-    console.log(this.nombre);
+  someMethodToNavigateToPagina1() {
+    console.log('Navegando a Página 1 con nombre:', this.nombreRecibido); // Verifica que nombreRecibido tenga un valor
+    this.router.navigate(['/pagina1'], {
+        state: {
+            nombre: this.nombreRecibido,
+      },
+    });
   }
+ 
+    
+  
+
   
 }

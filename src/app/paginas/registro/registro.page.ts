@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/auth.service'; // Ajusta la ruta según sea necesario
 import { FirebaseError } from 'firebase/app'; // Importa FirebaseError
-
+import { Router } from '@angular/router';
+import { getAuth } from 'firebase/auth';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -16,7 +17,8 @@ export class RegistroPage implements OnInit {
     private formBuilder: FormBuilder,
     public navCtrl: NavController,
     private authService: AuthService, // Inyecta AuthService
-    private alertController: AlertController // Inyecta AlertController
+    private alertController: AlertController, // Inyecta AlertController
+    private router: Router
   ) {
     // Inicializa el formulario
     this.registerForm = this.formBuilder.group({
@@ -31,28 +33,37 @@ export class RegistroPage implements OnInit {
 
   async onSubmitTemplate() {
     if (this.registerForm.valid) {
-      const { usuario, password, nombre, correo } = this.registerForm.value;
+        const { usuario, password, nombre, correo } = this.registerForm.value;
 
-      try {
-        // Registra al usuario usando AuthService
-        await this.authService.register(correo, password, usuario);
-        this.datos(); // Navegar a otra página si es necesario
-      } catch (error: unknown) {
-        console.error('Error al registrar:', error);
-        
-        // Manejar el error (mostrar un mensaje de alerta)
-        if (error instanceof FirebaseError && error.code === 'auth/email-already-in-use') {
-          this.showEmailInUseAlert();
-        } else {
-          // Manejo de otros errores si es necesario
-          this.showGenericErrorAlert();
+        try {
+            // Registra al usuario usando AuthService
+            await this.authService.register(correo, password, usuario);
+
+            // Verifica si el usuario está autenticado
+            const auth = getAuth();
+            const user = auth.currentUser; // Obtén el usuario actual
+            if (user) {
+                console.log('Usuario autenticado:', user);
+            } else {
+                console.log('No hay usuario autenticado después del registro.');
+            }
+
+            this.datos(); // Navegar a otra página si es necesario
+        } catch (error: unknown) {
+            console.error('Error al registrar:', error);
+            
+            // Manejar el error (mostrar un mensaje de alerta)
+            if (error instanceof FirebaseError && error.code === 'auth/email-already-in-use') {
+                this.showEmailInUseAlert();
+            } else {
+                this.showGenericErrorAlert();
+            }
         }
-      }
     }
-  }
+}
 
   datos() {
-    this.navCtrl.navigateForward('/home', {
+    this.router.navigate(['/home'], {
       state: {
         nombre: this.registerForm.value.nombre, // Pasar el nombre
       },

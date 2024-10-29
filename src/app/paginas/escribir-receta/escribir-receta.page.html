@@ -1,103 +1,30 @@
-<ion-app>
+<ion-card>
+<ion-input [(ngModel)]="nombreReceta" placeholder="Nombre Receta"></ion-input>
+<ion-select [(ngModel)]="tipoComida" placeholder="Tipo Comida">
+  <ion-select-option value="Desayuno">Desayuno</ion-select-option>
+  <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
+  <ion-select-option value="Cena">Cena</ion-select-option>
+</ion-select>
 
-  <ion-menu contentId="main-content">
-    
-    <ion-header>
-      <ion-toolbar color="transparent">
-        <ion-title>Menú</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<ion-input [(ngModel)]="ingredientes[0]" placeholder="Ingrediente 1"></ion-input>
+<ion-input [(ngModel)]="ingredientes[1]" placeholder="Ingrediente 2"></ion-input>
+<ion-input [(ngModel)]="ingredientes[2]" placeholder="Ingrediente 3"></ion-input>
+<ion-input [(ngModel)]="ingredientes[3]" placeholder="Ingrediente 4"></ion-input>
+<ion-input [(ngModel)]="ingredientes[4]" placeholder="Ingrediente 5"></ion-input>
+<ion-input [(ngModel)]="ingredientes[5]" placeholder="Ingrediente 6"></ion-input>
+<ion-input [(ngModel)]="ingredientes[6]" placeholder="Ingrediente 7"></ion-input>
+<ion-input [(ngModel)]="descripcion" placeholder="Descripción"></ion-input>
+<!-- Repite para más ingredientes -->
+<ion-button (click)="tomarFoto()" color="warning">Tomar Foto</ion-button>
 
-    <ion-content class=" listado-menu ion-no-padding ">
-      <ion-list>
-        <ion-item >
-          <ion-label routerLink="/pagina1" >Página 1</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label routerLink="/animaciones">Animaciones</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>¿?</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Configuración</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label routerLink="/login">Cerrar Sesión</ion-label>
-        </ion-item>
-      </ion-list>
-    
-    </ion-content>
+<ion-button (click)="subirReceta()" color="warning">Subir</ion-button>
+<ion-img *ngIf="fotoReceta" [src]="fotoReceta"></ion-img>
+</ion-card>
 
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        
-        <div class="hcs">
-          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-          <ion-title></ion-title>   
-        </div>
-      </ion-toolbar>
-    </ion-header>
-
-      <ion-content>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Ingresar Receta</ion-card-title>
-          </ion-card-header>
-          <br><br>
-          <ion-card-subtitle>Nombre Receta</ion-card-subtitle>
-          <ion-input   color="dark" fill="solid"></ion-input>  
-          
-          <br><br>
-          <ion-card-subtitle>Tipo de Comida</ion-card-subtitle>
-          <ion-select label="Elija el tipo de Comida" placeholder="Tipo">
-            <ion-select-option value="Desayuno">Desayuno</ion-select-option>
-            <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
-            <ion-select-option value="Cena">Cena</ion-select-option>
-          </ion-select>  
-          
-          <br><br>
-          <ion-card-subtitle>Descripción</ion-card-subtitle>
-          <ion-input labelPlacement="stacked" placeholder="Ingrese Descripción"></ion-input>
-          
-          <br><br>
-          <ion-card-subtitle>Ingredientes</ion-card-subtitle>
-          <ion-input  label="Ingrediente 1"  fill="solid" > </ion-input> 
-          <ion-input  label="Ingrediente 2"  fill="solid" > </ion-input>
-          <ion-input  label="Ingrediente 3"  fill="solid" > </ion-input>
-          <ion-input  label="Ingrediente 4"  fill="solid" > </ion-input>
-          <ion-input  label="Ingrediente 5"  fill="solid" > </ion-input> 
-
-          <br><br>
-          <ion-card id="img">
-            <img src="../../assets/icon/subirimagen.png" alt="Subir Imagen">
-          </ion-card>
-          <br>
-          <ion-button id="present-alert" expand="block" color="dark" >
-            Subir
-          </ion-button>
-          
-          <ion-alert
-          trigger="present-alert"
-          header="Subir Receta"
-          message="Se subirá la receta a la sección de Recetas Creadas"
-          [buttons]="alertButtons"
-          ></ion-alert>
-          
-        </ion-card>
-      </ion-content>
-
-
-    <ion-footer>
-      <ion-buttons slot="start">
-        <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
-      </ion-buttons>
-    </ion-footer>  
-  </div>
+<ion-footer>
+  <ion-buttons slot="start">
+    <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+  </ion-buttons>
+</ion-footer>  
 
   

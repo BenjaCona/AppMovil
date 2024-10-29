@@ -8,9 +8,10 @@
   </ion-header>
 
   <ion-content class="icon">
-      <img src="../../../assets/icon/ensaladasdeveranofaciles.jpg" alt="perfil" class="icono-perfil">
-      Bienvenido, Juanito Perez!
-      <hr><hr><hr><hr>
+    <img src="../../../assets/icon/ensaladasdeveranofaciles.jpg" alt="perfil" class="icono-perfil">
+    <!-- Usa el nombre recibido para dar la bienvenida -->
+    <h1>Bienvenido, {{ nombreRecibido || 'Usuario' }}!</h1>
+    <hr><hr><hr><hr>
     <ion-item>
       <ion-label>Recetas Favoritas</ion-label>
       <ion-badge color="warning">70</ion-badge>
@@ -25,10 +26,10 @@
 
   <ion-footer> 
     <ion-buttons slot="start">
-      <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+      <ion-back-button color="dark" defaultHref="/home"></ion-back-button>
     </ion-buttons>
   </ion-footer>
-
-
-
 </ion-app>
+
+
+
