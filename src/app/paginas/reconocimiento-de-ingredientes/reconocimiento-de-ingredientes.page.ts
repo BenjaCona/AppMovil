@@ -21,15 +21,27 @@ export class ReconocimientoDeIngredientesPage implements OnInit {
       source: CameraSource.Camera,
     });
   
-    this.imageUrl = image.webPath;
+    console.log('Imagen capturada:', image); // Agrega esta línea para ver qué se devuelve
   
-    if (this.imageUrl) {
+    if (image && image.webPath) {
+      const imageFile = await fetch(image.webPath!).then(res => res.blob());
+      const fileName = `image_${new Date().getTime()}.jpg`;
+  
       try {
-        const result = await this.mlkitService.labelImage(this.imageUrl);
+        const imageUrl = await this.mlkitService.uploadImage(new File([imageFile], fileName));
+        const result = await this.mlkitService.labelImage(imageUrl);
   
-        // Verifica si las respuestas y las etiquetas están presentes
+        // Filtrar solo las etiquetas relacionadas con alimentos
         if (result.responses && result.responses[0]?.labelAnnotations) {
-          this.labels = result.responses[0].labelAnnotations; 
+          const foodLabels = result.responses[0].labelAnnotations.filter(label =>
+            this.isFoodLabel(label.description)
+          );
+          
+          if (foodLabels.length > 0) {
+            this.labels = foodLabels; // Actualiza solo con etiquetas de alimentos
+          } else {
+            console.error('No se encontraron etiquetas de alimentos en la respuesta:', result);
+          }
         } else {
           console.error('No se encontraron etiquetas en la respuesta:', result);
         }
@@ -37,10 +49,20 @@ export class ReconocimientoDeIngredientesPage implements OnInit {
         console.error('Error al obtener las etiquetas:', error);
       }
     } else {
-      console.error('No se pudo obtener la ruta de la imagen.');
+      console.error('No se pudo obtener la ruta de la imagen.', image);
     }
+  }
+
+  // Método para verificar si una etiqueta está relacionada con alimentos
+  isFoodLabel(label: string): boolean {
+    const foodKeywords = [
+      'apple', 'banana', 'orange', 'carrot', 'potato', 'tomato', 
+      'bread', 'chicken', 'beef', 'fish', 'vegetable', 'fruit', 'cheese',
+      // Agrega más palabras clave de alimentos según sea necesario
+    ];
+    
+    return foodKeywords.some(keyword => label.toLowerCase().includes(keyword));
   }
 
   ngOnInit() {}
 }
-
