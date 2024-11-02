@@ -8,6 +8,23 @@ import { getAuth } from 'firebase/auth';
   styleUrls: ['./pagina1.page.scss'],
 })
 export class Pagina1Page implements OnInit {
+  public actionSheetButtons = [
+    {
+      text: 'Eliminar',
+      role: 'destructive',
+      data: {
+        action: 'eliminar',
+      },
+    },
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      data: {
+        action: 'cancelar',
+      },
+    },
+  ];
+
   nombreRecibido: string = ''; // Propiedad para almacenar el nombre
 
   constructor(private authService: AuthService) {}

@@ -14,15 +14,17 @@
     <hr><hr><hr><hr>
     <ion-item>
       <ion-label>Recetas Favoritas</ion-label>
-      <ion-badge color="warning">70</ion-badge>
+      <ion-badge color="warning">0</ion-badge>
     </ion-item>
     <ion-list>
       <ion-item>
         <ion-label>Recetas Creadas</ion-label>
-        <ion-badge>1</ion-badge>
+        <ion-badge>0</ion-badge>
       </ion-item>
     </ion-list>
   </ion-content>
+  <ion-button color="warning" id="open-action-sheet">Eliminar Cuenta</ion-button>
+  <ion-action-sheet trigger="open-action-sheet" header="¿Está seguro que quiere eliminar?" [buttons]="actionSheetButtons"></ion-action-sheet>
 
   <ion-footer> 
     <ion-buttons slot="start">
