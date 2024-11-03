@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
  } 
  
 
-
+ 
   
   ingresar (){
     if(this.usuario ==="" || this.password ===""){
@@ -64,14 +64,13 @@ export class LoginPage implements OnInit {
       
     }
 
-    //guardando datos con persistencia/storage
-    this.storage.set("usuario", "usuario");
-    this.storage.set("password","password");
+
+
   }
 
   async ngOnInit() {
 
-    await this.storage.create();
+    
   }
 
 

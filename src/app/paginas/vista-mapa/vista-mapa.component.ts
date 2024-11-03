@@ -1,23 +1,53 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
+import { PlacesService } from 'src/app/servicios/places.service';
+
+interface Place {
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  name: string;
+}
 
 @Component({
   selector: 'app-vista-mapa',
   templateUrl: './vista-mapa.component.html',
   styleUrls: ['./vista-mapa.component.scss'],
 })
-export class VistaMapaComponent  implements AfterViewInit {
-  @ViewChild('mapContainer', {static:false}) mapContainer!: ElementRef;
+export class VistaMapaComponent implements AfterViewInit {
+  @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef;
   map: any;
   marker: any;
 
+  constructor(private placesService: PlacesService) {}
+
+  async ngOnInit() {}
+
   async ngAfterViewInit() {
     await this.initializeMap();
-    
   }
 
-  async initializeMap(){
+  loadNearbyRestaurants(latitude: number, longitude: number) {
+    this.placesService.getNearbyRestaurants(latitude, longitude).subscribe((response: any) => {
+      const places: Place[] = response.results; // Define el tipo aquí
+
+      places.forEach((place: Place) => { // Especifica el tipo de `place`
+        const lat = place.geometry.location.lat;
+        const lng = place.geometry.location.lng;
+        const name = place.name;
+
+        L.marker([lat, lng]).addTo(this.map)
+          .bindPopup(`<b>${name}</b>`)
+          .openPopup();
+      });
+    });
+  }
+
+  async initializeMap() {
     // Obtener la posición inicial del usuario
     const position = await Geolocation.getCurrentPosition();
     const latitude = position.coords.latitude;
@@ -52,10 +82,4 @@ export class VistaMapaComponent  implements AfterViewInit {
       }
     });
   }
-
-
-  constructor() { }
-
-  ngOnInit() {}
-
 }

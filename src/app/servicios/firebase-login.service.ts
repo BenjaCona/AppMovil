@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseLoginService {
+  
 
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(private auth: Auth, private router: Router, private storage: Storage) {
+    
+  }
 
   // Método para iniciar sesión
   async login(email: string, password: string) {
