@@ -8,6 +8,8 @@ import { LocalesPageRoutingModule } from './locales-routing.module';
 
 import { LocalesPage } from './locales.page';
 
+import {VistaMapaComponent} from '../vista-mapa/vista-mapa.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { LocalesPage } from './locales.page';
     IonicModule,
     LocalesPageRoutingModule
   ],
-  declarations: [LocalesPage]
+  declarations: [LocalesPage, VistaMapaComponent]
 })
 export class LocalesPageModule {}
