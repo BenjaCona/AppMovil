@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { FirebaseLoginService } from 'src/app/servicios/firebase-login.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
   usuario : string=""
   password : string=""
 
-  constructor(public mensaje:ToastController, public alerta:AlertController, private router:Router,private loginFirebase:FirebaseLoginService) {  }
+  constructor(public mensaje:ToastController, public alerta:AlertController, private router:Router, private storage: Storage, private loginFirebase:FirebaseLoginService) {
+    }
 
   async MensajeError() {
     const alert = await this.alerta.create({
@@ -24,6 +26,7 @@ export class LoginPage implements OnInit {
   
     await alert.present();
   }
+
   async MensajeCerrarSesion() {
     const toast = await this.mensaje.create({
       message: 'Cerrar Sesión Exitoso',
@@ -31,7 +34,8 @@ export class LoginPage implements OnInit {
     });
   
   } 
- async MensajeCorrecto() {
+  
+  async MensajeCorrecto() {
   const toast = await this.mensaje.create({
     message: 'Inicio de Sesión Exitoso',
     duration: 2000
@@ -59,9 +63,19 @@ export class LoginPage implements OnInit {
       
       
     }
+
+    //guardando datos con persistencia/storage
+    this.storage.set("usuario", "usuario");
+    this.storage.set("password","password");
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    await this.storage.create();
   }
+
+
+
+
 
 }

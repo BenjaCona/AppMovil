@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { getAuth } from 'firebase/auth';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   nombre: string = "";
   nombreRecibido: string = "";
 
-  constructor(public alerta: AlertController, private router: Router, private authService: AuthService) {}
+  constructor(public alerta: AlertController, private router: Router, private storage : Storage , private authService: AuthService) {}
 
   ngOnInit() {
     const auth = getAuth();
@@ -65,7 +66,11 @@ export class HomePage implements OnInit {
     });
   }
  
-    
+  async verStorage(){
+
+    let usuario = await this.storage.get("aa")
+    console.log("El nombre guardado es: " +usuario)
+  }  
   
 
   

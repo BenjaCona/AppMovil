@@ -1,5 +1,6 @@
+<br><br><br>
 <ion-card>
-<ion-input [(ngModel)]="nombreReceta" placeholder="Nombre Receta"></ion-input>
+<ion-input [(ngModel)]="nombreReceta" placeholder="Título de la Receta"></ion-input>
 <ion-select [(ngModel)]="tipoComida" placeholder="Tipo Comida">
   <ion-select-option value="Desayuno">Desayuno</ion-select-option>
   <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
@@ -13,11 +14,11 @@
 <ion-input [(ngModel)]="ingredientes[4]" placeholder="Ingrediente 5"></ion-input>
 <ion-input [(ngModel)]="ingredientes[5]" placeholder="Ingrediente 6"></ion-input>
 <ion-input [(ngModel)]="ingredientes[6]" placeholder="Ingrediente 7"></ion-input>
-<ion-input [(ngModel)]="descripcion" placeholder="Descripción"></ion-input>
+<ion-input [(ngModel)]="descripcion" placeholder="Prepración"></ion-input>
 <!-- Repite para más ingredientes -->
-<ion-button (click)="tomarFoto()" color="warning">Tomar Foto</ion-button>
+<ion-button (click)="tomarFoto()" color="warning">Añadir Foto</ion-button>
 
-<ion-button (click)="subirReceta()" color="warning">Subir</ion-button>
+<ion-button (click)="subirReceta()" color="warning">Compartir</ion-button>
 <ion-img *ngIf="fotoReceta" [src]="fotoReceta"></ion-img>
 </ion-card>
 

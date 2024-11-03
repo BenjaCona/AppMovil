@@ -16,11 +16,13 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAuth } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent], // Solo declara AppComponent aquí
   imports: [
     BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(),
     AppRoutingModule,
     GoogleMapsModule,

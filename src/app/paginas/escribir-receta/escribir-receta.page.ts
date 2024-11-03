@@ -1,6 +1,6 @@
 // receta.page.ts
 import { Component } from '@angular/core';
-import { RecetaService } from 'src/app/receta.service'; // Asegúrate de que la ruta sea correcta
+import { RecetaService } from 'src/app/receta.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
