@@ -1,47 +1,12 @@
 <ion-app>
 
-  <ion-menu contentId="main-content">
-    
-    <ion-header>
-      <ion-toolbar color="transparent">
-        <ion-title>Menú</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content class=" listado-menu ion-no-padding ">
-      <ion-list>
-        <ion-item >
-          <ion-label routerLink="/pagina1" >Página 1</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label routerLink="/animaciones">Animaciones</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>¿?</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Configuración</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label routerLink="/login">Cerrar Sesión</ion-label>
-        </ion-item>
-      </ion-list>
-    
-    </ion-content>
-
-  </ion-menu>
-
-
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        
+       
         <div class="hcs">
           <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-          <ion-title></ion-title>   
+          
         </div>
       </ion-toolbar>
     </ion-header>
@@ -50,74 +15,73 @@
       <ion-toolbar>
         <ion-segment value="todo">
           <ion-segment-button value="todo">
-            <ion-label >Todo</ion-label>
+            <ion-label>Todo</ion-label>
           </ion-segment-button>
           <ion-segment-button value="categorías">
             <ion-label>Categorías</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-toolbar>
+      
       <ion-searchbar show-clear-button="focus" value="Buscar"></ion-searchbar>
 
-    <!-- Cartas de Recetas -->
-      <ion-card id="cartas">
-        <ion-fab>
-          <ion-fab-button size="small" color="warning">
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-        <img src="../../../assets/icon/Pasteldechoclo.png" alt="Pastel de choclo"/>
+      <!-- Cartas de Recetas de Otros Usuarios -->
+      <ion-card *ngFor="let receta of recetas" (click)="openModal(receta)">
+        <img [src]="receta.foto" class="modal-image" alt="{{ receta.nombre }}" />
         <ion-card-header>
-          <ion-card-title>Pastel de Choclo</ion-card-title>
-          <ion-card-subtitle color="warning">Almuerzo</ion-card-subtitle>
+          <ion-card-title>{{ receta.nombre }}</ion-card-title>
+          <ion-card-subtitle color="warning">{{ receta.tipo }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          Pastel de choclo hecho al horno con pino, aceituna, choclo y pollo. 
+          {{ receta.descripcion }}
         </ion-card-content>
       </ion-card>
-
-      <ion-card id="cartas">
-        <ion-fab>
-          <ion-fab-button size="small" color="warning">
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-        <img src="../../../assets/icon/Sandwich.jpg" alt="sándwiches de queso"/>
-        <ion-card-header>
-          <ion-card-title>Sándwiches de Queso</ion-card-title>
-          <ion-card-subtitle color="warning">Cena</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          Sándwiches rellenos con queso al gusto, acompañado con pan tostado. 
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card id="cartas">
-        <ion-fab>
-          <ion-fab-button size="small" color="warning">
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-        <img src="../../../assets/icon/Hummus.png" alt="Hummus de Garbanzos"/>
-        <ion-card-header>
-          <ion-card-title>Hummus de Garbanzos</ion-card-title>
-          <ion-card-subtitle color="warning">Almuerzo</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          Hummus condimentado de garbanzos caseros al gusto. 
-        </ion-card-content>
-      </ion-card>
-      
     </ion-content>
+
     <ion-footer>
       <ion-buttons slot="start">
-        <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
+        <ion-back-button color="dark" defaultHref="/home"></ion-back-button>
       </ion-buttons>
-    </ion-footer>  
+    </ion-footer>
   </div>
 
-
-
-
-
-</ion-app>
+  <!-- Modal de Receta -->
+  <ion-modal #modalReceta [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ selectedReceta?.nombre }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">Cerrar</ion-button> 
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div *ngIf="selectedReceta">
+        <ion-content>
+        
+        <img  *ngIf="selectedReceta.foto" class="modal-image" [src]="selectedReceta.foto" alt="{{ selectedReceta.nombre }}" />
+        </ion-content>
+        <ion-card-header>
+          <ion-card-subtitle color="warning">{{ selectedReceta.tipo }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ selectedReceta.descripcion }}</p>
+          <h4>Ingredientes:</h4>
+          <ul>
+            <li *ngFor="let ingrediente of selectedReceta.ingredientes">{{ ingrediente }}</li>
+          </ul>
+          <h4>Pasos:</h4>
+          <ol>
+            <li *ngFor="let paso of selectedReceta.pasos">{{ paso }}</li>
+          </ol>
+        </ion-card-content>
+        <ion-buttons slot="end">
+          <ion-button expand="full" (click)="closeModal()">Cerrar</ion-button> <!-- Botón de cierre en el footer -->
+        </ion-buttons>
+      </div>
+    </ion-content>
+    
+    
+  </ion-modal>
+  </ion-app>
+  

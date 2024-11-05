@@ -1,4 +1,3 @@
-// receta.page.ts
 import { Component } from '@angular/core';
 import { RecetaService } from 'src/app/receta.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
@@ -12,7 +11,8 @@ export class EscribirRecetaPage {
   nombreReceta: string = '';
   tipoComida: string = '';
   descripcion: string = '';
-  ingredientes: string[] = [];
+  ingredientes: string[] = [''];
+  pasos: string[] = [];
   fotoReceta: string | undefined;
 
   constructor(private recetaService: RecetaService) {}
@@ -22,21 +22,56 @@ export class EscribirRecetaPage {
       nombre: this.nombreReceta,
       tipo: this.tipoComida,
       descripcion: this.descripcion,
-      ingredientes: this.ingredientes,
+      ingredientes: this.ingredientes.filter(ing => ing.trim() !== ''),
+      pasos: this.pasos.filter(paso => paso.trim() !== ''),
       foto: this.fotoReceta || 'No hay foto',
-      
     };
-    await this.recetaService.agregarReceta(receta);
-    // Aquí puedes agregar lógica para limpiar el formulario o mostrar un mensaje
+
+    try {
+      await this.recetaService.agregarReceta(receta);
+      this.limpiarFormulario();
+    } catch (error) {
+      console.error('Error al subir la receta:', error);
+    }
   }
+
   async tomarFoto() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
-      resultType: CameraResultType.Uri, // Puedes cambiar a Base64 si es necesario
+      resultType: CameraResultType.DataUrl,
     });
 
-    this.fotoReceta = image.webPath; // Guarda la URL de la imagen
-}
-}
+    this.fotoReceta = image.dataUrl;
+    console.log('Foto tomada:', this.fotoReceta);
+  }
 
+  agregarIngrediente() {
+    this.ingredientes.push(''); // Añade un campo vacío al arreglo
+  }
+
+  eliminarIngrediente() {
+    if (this.ingredientes.length > 0) {
+      this.ingredientes.pop();
+    }
+  }
+
+  agregarPaso() {
+    this.pasos.push('');
+  }
+
+  eliminarPaso() {
+    if (this.pasos.length > 0) {
+      this.pasos.pop();
+    }
+  }
+
+  limpiarFormulario() {
+    this.nombreReceta = '';
+    this.tipoComida = '';
+    this.descripcion = '';
+    this.ingredientes = [''];
+    this.pasos = [];
+    this.fotoReceta = undefined;
+  }
+}

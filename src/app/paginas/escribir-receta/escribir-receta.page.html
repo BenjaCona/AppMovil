@@ -1,25 +1,37 @@
-<br><br><br>
 <ion-card>
-<ion-input [(ngModel)]="nombreReceta" placeholder="Título de la Receta"></ion-input>
-<ion-select [(ngModel)]="tipoComida" placeholder="Tipo Comida">
-  <ion-select-option value="Desayuno">Desayuno</ion-select-option>
-  <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
-  <ion-select-option value="Cena">Cena</ion-select-option>
-</ion-select>
+  <ion-input [(ngModel)]="nombreReceta" placeholder="Título de la Receta"></ion-input>
+  <ion-select [(ngModel)]="tipoComida" placeholder="Tipo Comida">
+      <ion-select-option value="Desayuno">Desayuno</ion-select-option>
+      <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
+      <ion-select-option value="Cena">Cena</ion-select-option>
+  </ion-select>
 
-<ion-input [(ngModel)]="ingredientes[0]" placeholder="Ingrediente 1"></ion-input>
-<ion-input [(ngModel)]="ingredientes[1]" placeholder="Ingrediente 2"></ion-input>
-<ion-input [(ngModel)]="ingredientes[2]" placeholder="Ingrediente 3"></ion-input>
-<ion-input [(ngModel)]="ingredientes[3]" placeholder="Ingrediente 4"></ion-input>
-<ion-input [(ngModel)]="ingredientes[4]" placeholder="Ingrediente 5"></ion-input>
-<ion-input [(ngModel)]="ingredientes[5]" placeholder="Ingrediente 6"></ion-input>
-<ion-input [(ngModel)]="ingredientes[6]" placeholder="Ingrediente 7"></ion-input>
-<ion-input [(ngModel)]="descripcion" placeholder="Prepración"></ion-input>
-<!-- Repite para más ingredientes -->
-<ion-button (click)="tomarFoto()" color="warning">Añadir Foto</ion-button>
+  <!-- Sección de Ingredientes -->
+  <div>
+      <h3>Ingredientes</h3>
+      <ion-input *ngFor="let ingrediente of ingredientes; let i = index"
+                 [(ngModel)]="ingredientes[i]"
+                 [ngModelOptions]="{ updateOn: 'blur' }"
+                 placeholder="Ingrediente {{i + 1}}"></ion-input>
+      
+  </div>
 
-<ion-button (click)="subirReceta()" color="warning">Compartir</ion-button>
-<ion-img *ngIf="fotoReceta" [src]="fotoReceta"></ion-img>
+  <!-- Sección de Pasos -->
+  <div>
+      <h3>Pasos</h3>
+      <ion-input *ngFor="let paso of pasos; let i = index"
+                 [(ngModel)]="pasos[i]"
+                 [ngModelOptions]="{ updateOn: 'blur' }"
+                 placeholder="Paso {{i + 1}}"></ion-input>
+      
+  </div>
+  <ion-button (click)="agregarPaso()" color="primary">Añadir Paso</ion-button>
+  <ion-button (click)="eliminarPaso()" color="danger" [disabled]="pasos.length === 0">Eliminar Paso</ion-button>
+  <ion-button (click)="agregarIngrediente()" color="primary">Añadir Ingrediente</ion-button>
+  <ion-button (click)="eliminarIngrediente()" color="danger" [disabled]="ingredientes.length === 0">Eliminar Ingrediente</ion-button>
+  <ion-button (click)="tomarFoto()" color="warning">Añadir Foto</ion-button>
+  <ion-button (click)="subirReceta()" color="warning">Compartir</ion-button>
+  <ion-img *ngIf="fotoReceta" [src]="fotoReceta"></ion-img>
 </ion-card>
 
 <ion-footer>
@@ -27,5 +39,3 @@
     <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
   </ion-buttons>
 </ion-footer>  
-
-  

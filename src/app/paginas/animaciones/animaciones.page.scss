@@ -1,0 +1,11 @@
+
+  
+  ion-modal .modal-image {
+    max-width: 50%;      /* Asegura que la imagen no exceda el ancho del contenedor */
+    max-height: 60px;    /* Limita la altura máxima de la imagen */
+    width: 50%;          /* Mantiene la proporción de la imagen */
+    height: 50%;         /* Mantiene la proporción de la imagen */
+    object-fit: initial;    /* Recorta la imagen para cubrir el espacio disponible */
+    display: block;       /* Asegura que la imagen sea un bloque */
+    margin: 0 auto;      /* Centra la imagen */
+  }
