@@ -1,42 +1,94 @@
-<ion-app>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>       
-        <div class="hcs">
-          <img id="logo-home" src="../../../assets/icon/RECETÍN-SIN-FONDO.png">
-          <ion-title></ion-title>   
-        </div>
-      </ion-toolbar> 
-    </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <ion-list>
-      <ion-item>
-        <ion-label>Mis Datos</ion-label>
-      </ion-item>
-      <br><br><br>
-      <ion-item>
-        <ion-label>Editar Perfil</ion-label>
-      </ion-item>
-      <br><br><br>
-      <ion-item>
-        <ion-label>Historial</ion-label>
-      </ion-item>
-      <br><br><br>
-      <ion-item>
-        <ion-label>Ayuda</ion-label>
-      </ion-item>
-      <br><br><br>
-      <ion-item>
-        <ion-label>Sobre la aplicación</ion-label>
-      </ion-item>
-    </ion-list>
-
-    
-
-    <ion-footer>
-      <ion-buttons slot="start">
-        <ion-back-button  color="dark" defaultHref="/home"></ion-back-button>
-      </ion-buttons>
-    </ion-footer>
+<ion-content>
+  <!-- Contenedor de los botones alineados a la izquierda en una lista -->
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="openModal('help')" class="ion-text-start">Ayuda</ion-button>
+    <ion-button expand="block" (click)="openModal('about')" class="ion-text-start">Sobre la aplicación</ion-button>
   </div>
-</ion-app>
+
+  <!-- Modal para Ayuda -->
+  <ion-modal [isOpen]="isHelpModalOpen" (didDismiss)="closeModal('help')">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Ayuda</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal('help')">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <h2>¡Bienvenido a la sección de ayuda!</h2>
+        <p>Aquí te explicamos cómo utilizar nuestra aplicación para que puedas aprovechar todas sus funcionalidades y empezar a cocinar con facilidad.</p>
+
+        <h3>Escanear Ingredientes</h3>
+        <p><strong>¿Cómo escanear tus ingredientes?</strong></p>
+        <p>Usa la cámara integrada en la aplicación para escanear los ingredientes que tienes en casa. Solo selecciona la opción de "Escanear" en la pantalla principal, enfoca los ingredientes y la aplicación reconocerá los productos. Luego, te sugerirá recetas que puedes preparar con esos ingredientes.</p>
+        <p><strong>Consejo:</strong> Asegúrate de que los ingredientes estén bien iluminados para un mejor escaneo.</p>
+
+        <h3>Explorar Recetas</h3>
+        <p><strong>Explora recetas personalizadas:</strong> Después de escanear los ingredientes, la aplicación te mostrará recetas personalizadas. También puedes explorar recetas por categorías o buscar según tus preferencias.</p>
+        <p>¡Nunca ha sido tan fácil encontrar nuevas ideas para cocinar!</p>
+
+        <h3>Solución de Problemas</h3>
+        <p><strong>¿El escaneo no funciona correctamente?</strong></p>
+        <p>Si no puedes escanear los ingredientes, asegúrate de que estén bien iluminados y que el enfoque de la cámara sea claro. Si el problema persiste, intenta limpiar la cámara de tu dispositivo.</p>
+        <p>Si tienes más dudas, puedes ponerte en contacto con nosotros a través de la sección de contacto.</p>
+
+        <h3>Contactar con Soporte</h3>
+        <p><strong>¿Tienes preguntas?</strong></p>
+        <p>Si necesitas ayuda adicional o tienes preguntas sobre el uso de la aplicación, ¡no dudes en contactarnos!</p>
+        <p><strong>Correo electrónico:</strong> <a href="mailto:contacto@tuappderecetas.com">contactotuappderecetas.com</a></p>
+        <p><strong>Redes sociales:</strong> Síguenos en nuestras redes para más consejos, trucos y actualizaciones exclusivas.</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal para Sobre la aplicación -->
+  <ion-modal [isOpen]="isAboutModalOpen" (didDismiss)="closeModal('about')">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Sobre la aplicación</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal('about')">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <h2>🍳 ¿Quiénes somos?</h2>
+        <p>Somos Benjamin, Jenn y Seba, tres amigos apasionados por la cocina y la tecnología. Nuestro objetivo es ayudarte a disfrutar del arte culinario y a experimentar con recetas que transformen tus comidas en momentos especiales.</p>
+
+        <h2>🌟 Nuestra misión</h2>
+        <p>Inspirarte a cocinar con confianza, creatividad y alegría. Creemos que cualquier persona puede disfrutar de la cocina con las herramientas adecuadas y un poco de inspiración.</p>
+
+        <h2>🤝 ¿Qué ofrecemos?</h2>
+        <ul>
+          <li>Recetas para todos los gustos: Desde las más sencillas hasta las más sofisticadas.</li>
+          <li>Cámara inteligente: Escanea los ingredientes que tienes en casa y te sugerimos recetas personalizadas al instante.</li>
+          <li>Un espacio para la comunidad: Comparte tus creaciones y descubre las de otros apasionados por la cocina.</li>
+        </ul>
+
+        <h2>🌍 Nuestro compromiso</h2>
+        <p>Fomentar la alimentación consciente y la sostenibilidad. Queremos que aproveches cada ingrediente al máximo y te diviertas mientras cocinas.</p>
+
+        <h2>✨ Contáctanos</h2>
+        <p>¡Estamos aquí para escucharte! Escríbenos a <a href="mailto:contacto@tuappderecetas.com">contactotuappderecetas.com</a> o síguenos en nuestras redes sociales para consejos, trucos y novedades exclusivas.</p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<!-- Botón para volver a la página inicial, alineado al fondo -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" [routerLink]="'/home'" class="ion-text-start">
+      Volver a la página inicial
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

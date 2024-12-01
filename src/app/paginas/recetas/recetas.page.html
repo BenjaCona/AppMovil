@@ -12,19 +12,9 @@
     </ion-header>
 
     <ion-content class="ion-no-padding">
-      <ion-toolbar>
-        <ion-segment value="todo">
-          <ion-segment-button value="todo">
-            <ion-label>Todo</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="categorías">
-            <ion-label>Categorías</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
       
-      <ion-searchbar show-clear-button="focus" value="Buscar"></ion-searchbar>
-
+      
+     
       <!-- Cartas de Recetas de Otros Usuarios -->
       <ion-card *ngFor="let receta of recetas" (click)="openModal(receta)">
         <img [src]="receta.foto" class="modal-image" alt="{{ receta.nombre }}" />
