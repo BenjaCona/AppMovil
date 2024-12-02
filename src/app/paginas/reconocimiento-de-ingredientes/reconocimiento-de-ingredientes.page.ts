@@ -15,6 +15,7 @@ export class ReconocimientoDeIngredientesPage implements OnInit {
   recipes: any[] = []; // Para almacenar las recetas
 
   constructor(private mlkitService: MlkitService, private recipeService: RecipeService) {}
+  
 
   async takePhoto() {
     const image = await Camera.getPhoto({
@@ -23,6 +24,15 @@ export class ReconocimientoDeIngredientesPage implements OnInit {
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
     });
+
+    const permissions = await Camera.checkPermissions();
+    if (permissions.camera === 'denied') {
+      const request = await Camera.requestPermissions();
+      if (request.camera === 'denied') {
+        alert('Permiso de cámara denegado.');
+        return;
+      }
+    }
   
     console.log('Imagen capturada:', image); // Agrega esta línea para ver qué se devuelve
   

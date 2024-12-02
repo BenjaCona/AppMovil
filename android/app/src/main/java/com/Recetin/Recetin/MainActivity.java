@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.Recetin.Recetin;
 
 import com.getcapacitor.BridgeActivity;
 
