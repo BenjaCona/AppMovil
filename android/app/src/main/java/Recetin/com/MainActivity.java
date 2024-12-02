@@ -1,4 +1,4 @@
-package com.Recetin.Recetin;
+package Recetin.com;
 
 import com.getcapacitor.BridgeActivity;
 
